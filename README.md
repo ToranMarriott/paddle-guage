@@ -1,6 +1,6 @@
 # 💧 PaddleGauge
 
-A real-time river level monitoring app built for paddlers — kayakers, canoeists, paddleboarders and anyone who needs to know what a river is doing before they get on the water.
+A real-time river level monitoring app built for paddlers — kayakers, canoeists, paddleboarders and anyone who needs to know what a river is doing before they get on the water. [Live demo](https://paddlegauge.netlify.app)
 
 ## What it does
 
@@ -25,6 +25,7 @@ PaddleGauge is an early build. Improvements are already well underway, with a lo
 
 ### In progress
 
+- **Desktop and tablet view** - expand beyond mobile-first to serve desktop and tablet users
 - **Backend with scheduled data fetching** — a server will fetch and cache data every 15 minutes, matching the API's update frequency, significantly improving load times for rivers with many stations
 - **Altitude-based station ordering** — stations ordered source to sea using elevation data, giving a more intuitive picture of how a river is running along its length
 - **Reading trend indicator** — a trajectory arrow showing whether a station's level is rising or falling based on recent readings
@@ -32,7 +33,7 @@ PaddleGauge is an early build. Improvements are already well underway, with a lo
 - **Interactive mapping** — plot river gauges on a map and allow users to select gauges directly
 - **Expansion** - expand to cover the entire UK by fetching Welsh, Scottish and Northern Irish APIs
 
-### Then the following improvements: 
+### Coming next: 
 #### 1) Make it useful for paddlers
 
 - Level history graphs (last 24h / 7 days)
@@ -48,8 +49,6 @@ This is where PaddleGauge really starts to differentiate. The goal is to attach 
 - Collate paddling behaviour data from these ratings
 - Hazard reports — downed trees, broken weirs, and access issues that display for set time periods
 - Community level comments and recommended runnable ranges
-
-This turns raw data into shared knowledge.
 
 #### 3) Smart features
 
