@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>PaddleGuage</title>
+        <link rel="stylesheet" href="./styles.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1><i class="fa-solid fa-droplet accent-color"></i>PaddleGuage</h1>
+        </header>
+        <main>
+            <div class="search-container">
+                <h2 class="search-heading">River Search</h2>
+                <p class="search-text secondary-text">Search for river levels across England</p>
+                <div id="river-search">
+                    <span><i class="fa-solid fa-magnifying-glass secondary-text"></i></span>
+                    <input id="river-search-bar" autocomplete="off"></input>
+                    <span id="river-search-delete-btn"><i class="fa-regular fa-circle-xmark"></i></span>
+                </div>
+                <div id="search-dropdown" class="search-dropdown hidden">
+                    <ul id="search-predictions"></ul>
+                </div>
+            </div>
+            <ul id="station-container"></ul>
+        </main>
+        <script src="./index.js"></script>
+    </body>
+</html>

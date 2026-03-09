@@ -1,0 +1,212 @@
+body, 
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f1117;
+    color: #f1f5f9;
+}
+
+header {
+    border-bottom: 1px solid #2e3248;
+}
+
+h1 {
+    margin: .8em .5em; 
+    font-weight: 500;
+}
+
+.search-container {
+    width: 90vw;
+    margin: 1em auto 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-heading,
+.search-text {
+    margin: .6em 0 0 0;
+    padding: 0;
+}
+
+#river-search {
+    border: 1px solid #2e3248;
+    border-radius: 10px;
+    width: 100%;
+    height: 2.5rem;
+    margin: .6em auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+#river-search:focus-within {
+    border: 1px solid #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+#river-search-bar {
+    width: 80%;
+    height: 1.5rem;
+    margin: 2px;
+    background: transparent;
+    border: none;
+    color: white;
+}
+
+#river-search-bar:focus {
+    background: transparent;
+    border: none;
+    color: white;
+    box-shadow: 0 0 0px 1000px #0f1117 inset !important;
+    outline: none;
+}
+
+#search-dropdown {
+    width: 100%;
+}
+
+#search-predictions {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: #1c1f2e;
+    border: 1px solid #2e3248;
+    border-radius: 10px;
+    overflow: hidden;
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.river-card {
+    border-bottom: 1px solid #2e3248;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.river-card:last-child {
+    border: none;
+}
+
+.river-card:hover {
+    background: #2e3248;
+}
+
+#station-container {
+    width: 90vw;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+.station-card {
+    border: 1px solid #2e3248;
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.station-card ul li {
+    margin: 0;
+}
+
+.station-card-text {
+    width: 60%;
+}
+
+.station-card-data {
+    width: 40%;
+    text-align: center;
+}
+
+.station-card-name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 .5em 0;
+}
+
+.station-card-town {
+    margin: 0 0 .5em 0;
+}
+
+.station-card-reading {
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.warning-badge {
+    margin: 0;
+    padding: .3em .6em;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-block;
+    align-self: center;
+}
+
+.high-warning-badge {
+    background-color: #991b1b;
+    color: #fca5a5;
+    border: 1px solid #b91c1c;
+}
+
+.nearly-high-warning-badge {
+    background-color: #9a3412;
+    color: #fdba74;
+    border: 1px solid #c2410c;
+}
+
+.normal-warning-badge {
+    background-color: #166534;
+    color: #86efac;
+    border: 1px solid #15803d;
+}
+
+.nearly-low-warning-badge {
+    background-color: #854d0e;
+    color: #fef08a;
+    border: 1px solid #a16207;
+}
+
+.low-warning-badge {
+    background-color: #1d4ed8;
+    color: #bfdbfe;
+    border: 1px solid #2563eb;
+}
+
+.accent-color {
+    color: #3b82f6;
+}
+
+.secondary-text {
+    color: #94a3b8;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Background: #0f1117 - deep dark, almost black
+Card/Surface: #1c1f2e - slightly lighter dark for cards
+Border/Subtle: #2e3248 - muted blue-grey for borders
+Accent: #3b82f6 - clean, modern blue
+Accent Hover: #2563eb - slightly deeper blue for interactions
+Text Primary: #f1f5f9 - off-white, easier on the eyes than pure white
+Text Secondary: #94a3b8 - muted grey for less important info */
