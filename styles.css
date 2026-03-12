@@ -52,7 +52,7 @@ h1 {
 #river-search-bar {
     width: 80%;
     height: 1.5rem;
-    margin: 2px;
+    margin: 0 20px;
     background: transparent;
     border: none;
     color: white;
@@ -203,10 +203,24 @@ h1 {
     display: none;
 }
 
-/* Background: #0f1117 - deep dark, almost black
-Card/Surface: #1c1f2e - slightly lighter dark for cards
-Border/Subtle: #2e3248 - muted blue-grey for borders
-Accent: #3b82f6 - clean, modern blue
-Accent Hover: #2563eb - slightly deeper blue for interactions
-Text Primary: #f1f5f9 - off-white, easier on the eyes than pure white
-Text Secondary: #94a3b8 - muted grey for less important info */
+@media (min-width: 768px) {
+    
+    body {
+        overflow-y: scroll;
+    }
+
+    #river-search-bar {
+        width: 90%;
+    }
+
+    #station-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1em;
+        align-items: stretch;
+    }
+
+    .station-card {
+        width: auto;
+    }
+}
