@@ -39,7 +39,7 @@ h1 {
     height: 2.5rem;
     margin: .6em auto 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     transition: border 0.2s ease, box-shadow 0.2s ease;
 }
@@ -53,7 +53,7 @@ h1 {
     width: 80%;
     font-size: 1rem;
     height: 1.8rem;
-    margin: 0 20px;
+    margin: 0;
     background: transparent;
     border: none;
     color: white;
