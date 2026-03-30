@@ -44,13 +44,13 @@ function formatReadingValue(validMeasure){
 }
 
 function buildLevelBadgeHTML(typicalHigh, typicalLow, readingValue){
-    if ((readingValue && typicalHigh) && readingValue >= typicalHigh){
+    if ((readingValue != null && typicalHigh != null) && readingValue >= typicalHigh){
         return `<p class="high-warning-badge warning-badge"><i class="fa-solid fa-triangle-exclamation"></i> High</p>`
-    } else if ((readingValue && typicalHigh) && ((typicalHigh - readingValue) <= (typicalHigh / 10))){
+    } else if ((readingValue != null && typicalHigh != null) && ((typicalHigh - readingValue) <= (typicalHigh / 10))){
         return `<p class="nearly-high-warning-badge warning-badge"><i class="fa-solid fa-arrow-up"></i> Nearly High</p>`
-    } else if ((readingValue && typicalLow) && readingValue <= typicalLow){
+    } else if ((readingValue != null && typicalLow != null) && readingValue <= typicalLow){
         return `<p class="low-warning-badge warning-badge"><i class="fa-solid fa-droplet-slash"></i> Low</p>`
-    } else if ((readingValue && typicalLow) && ((readingValue - typicalLow) <= (typicalLow / 10))){
+    } else if ((readingValue != null && typicalLow != null) && ((readingValue - typicalLow) <= (typicalLow / 10))){
         return `<p class="nearly-low-warning-badge warning-badge"><i class="fa-solid fa-arrow-down"></i> Nearly Low</p>`
     } else if (!typicalLow && !typicalHigh) {
         return ``
@@ -76,7 +76,7 @@ function buildStationCardHTML(station) {
     const readingValue = formatReadingValue(validMeasure)
     const typicalHigh = station.stageScale?.typicalRangeHigh
     const typicalLow = station.stageScale?.typicalRangeLow
-    const heightWarning = buildLevelBadgeHTML(typicalHigh, typicalLow, validMeasure?.latestReading.value) 
+    const heightWarning = buildLevelBadgeHTML(typicalHigh, typicalLow, validMeasure?.latestReading?.value) 
     return `
         <li class="station-card">
             <div class="station-card-text">
@@ -103,6 +103,10 @@ fetch("https://environment.data.gov.uk/flood-monitoring/id/stations?status=Activ
                 .filter(riverName => riverName)
         ))
     })
+    .catch( (error) => {
+        selectedRiverStations.innerHTML = `<p>Something went wrong. Please try again.</p>`
+        console.error(error)
+    })
 
 riverSearchBar.addEventListener('input', function(){
     const query = riverSearchBar.value.toLowerCase()
@@ -112,32 +116,42 @@ riverSearchBar.addEventListener('input', function(){
 
 searchClearBtn.addEventListener('click', function(){
     riverSearchBar.value = ""
-    renderSearchDropdown()
+    renderSearchDropdown([])
 })
 
 riverSearchBar.addEventListener('focus', () => riverSearchBar.value = "")
 
 searchPredictions.addEventListener('click', function(e) {
-    const riverName = e.target.textContent
-    selectedRiverStations.innerHTML = `<i class="fa-solid fa-spinner fa-spin loading-spinner"></i>`
-    clearSearch()
-    riverSearchBar.value = riverName
+    if (e.target.matches('li')) {
+        const riverName = e.target.textContent
+        selectedRiverStations.innerHTML = `<div class="loading-spinner"><i class="fa-solid fa-spinner fa-spin"></i></div>`
+        clearSearch()
+        riverSearchBar.value = riverName
 
-    fetch(`https://environment.data.gov.uk/flood-monitoring/id/stations?riverName=${encodeURIComponent(riverName)}`)
-        .then(res => res.json())
-        .then(function(data) {
-            const stations = data.items.filter(station => station.riverName)
+        fetch(`https://environment.data.gov.uk/flood-monitoring/id/stations?riverName=${encodeURIComponent(riverName)}`)
+            .then(res => res.json())
+            .then(function(data) {
+                const stations = data.items.filter(station => station.riverName)
 
-            Promise.all(
-                stations.map(function(station){
-                    return fetch(station["@id"].replace("http://", "https://"))
-                        .then(res => res.json())
-                        .then(data => data.items)
+                Promise.all(
+                    stations.map(function(station){
+                        return fetch(station["@id"].replace("http://", "https://"))
+                            .then(res => res.json())
+                            .then(data => data.items)
+                    })
+                ).then(function(detailedStations) {
+                    selectedRiverStations.innerHTML = detailedStations
+                        .map(station => buildStationCardHTML(station))
+                        .join('')
                 })
-            ).then(function(detailedStations) {
-                selectedRiverStations.innerHTML = detailedStations
-                    .map(station => buildStationCardHTML(station))
-                    .join('')
+                .catch( (error) => {
+                    selectedRiverStations.innerHTML = `<p>Something went wrong. Please try again.</p>`
+                    console.error(error)
+                })
             })
-        })
+            .catch( (error) => {
+                selectedRiverStations.innerHTML = `<p>Something went wrong. Please try again.</p>`
+                console.error(error)
+            })
+    }
 })
